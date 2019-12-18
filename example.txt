@@ -1,0 +1,19 @@
+	li R2,0
+	li R3,4
+	li R4,0
+LoopI:
+	beq R4,R3,EndLoopI
+	li R5,0
+LoopJ:
+	beq R5,R3,EndLoopJ
+	add R6,R5,R4
+	andi R6,R6,1
+	bne R6,R0,Endif
+	add R2,R2,R5
+Endif:
+	addi R5,R5,1
+	beq R0,R0,LoopJ
+EndLoopJ:
+	addi R4,R4,1
+	beq R0,R0,LoopI
+EndLoopI:
