@@ -1,4 +1,4 @@
-# dataStructure_Project
+# dataStructure_Project1
 ## command:
 	(in linux)
 	1. g++ -std=c++11 project1.cpp -o project1
