@@ -5,7 +5,6 @@ command:
 
 執行結果：(example1)
 =================================================================
-
 	input entry size
 	8
 
@@ -48,37 +47,34 @@ example1:
 
 系統流程：
 =================================================================
+	1.讀擋
+	2.讀擋完成後將資料存成以下結構
+	vector<string> loadInstName; // 紀錄每個register的名字
+	vector<int> loadInstNumber; // 紀錄每個register的值
 
-1.讀擋
-2.讀擋完成後將資料存成以下結構
-vector<string> loadInstName; // 紀錄每個register的名字
-vector<int> loadInstNumber; // 紀錄每個register的值
-
-// 將instruction分別記錄以下結構 ex: add R1,R2,R3
-// instFirst會記錄R1
-// instSecond會記錄R2
-// instThird會記錄R3
-// instName會記錄add
-vector<string> instFirst;
-vector<string> instSecond;
-vector<string> instThird;
-vector<string> loopName;
-vector<string> instName;
-vector<int> instLocation;
-vector<int> loopLocation;
-string first, second, third;
+	// 將instruction分別記錄以下結構 ex: add R1,R2,R3
+	// instFirst會記錄R1
+	// instSecond會記錄R2
+	// instThird會記錄R3
+	// instName會記錄add
+	vector<string> instFirst;
+	vector<string> instSecond;
+	vector<string> instThird;
+	vector<string> loopName;
+	vector<string> instName;
+	vector<int> instLocation;
+	vector<int> loopLocation;
+	string first, second, third;
 	
-struct Entry { // prediction資料儲存結構
-	vector<int> outcome;
-	vector<int> state; // 0:00, 1:01, 2:10, 3:11
-	vector<int> st; // 0:SN, 1:WN, 2:WT, 3:ST
-	int count = 0;
-};
+	struct Entry { // prediction資料儲存結構
+		vector<int> outcome;
+		vector<int> state; // 0:00, 1:01, 2:10, 3:11
+		vector<int> st; // 0:SN, 1:WN, 2:WT, 3:ST
+		int count = 0;
+	};
 
-3.資料儲存好以後，開始模擬組合語言執行流程，對branch去做預測
-4.輸出結果
-
-=================================================================
+	3.資料儲存好以後，開始模擬組合語言執行流程，對branch去做預測
+	4.輸出結果
 
 Function：
 =================================================================
