@@ -25,73 +25,6 @@ int stateLimit(int state);
 int returnLoadValue(string str);
 bool isExist(string str);
 int returnLoop(string str);
-//void convertStateAndPrint(int state);
-//void convertStAndPrint(vector<int> st);
-//void convertPredAndPrint(int pred);
-//int stateLimit(int state);
-//int state1BitLimit(int state);
-//void predSave(int st, vector<int> &pred);
-//void differentOrNot(vector<char> &correct, int input, int pred);
-//void do2BitHistory2BC(vector<int> input, vector<int> &state, vector<int> &st, vector<int> &pred, vector<char> &correct);
-//void do1BitHistory2BC(vector<int> input, vector<int> &state1Bit, vector<int> &st1Bit, vector<int> &pred1Bit, vector<char> &correct1Bit);
-//
-//void convertStateAndPrint(int state) {
-//	if (state == 0) {
-//		cout << "00";
-//	}
-//	else if (state == 1) {
-//		cout << "01";
-//	}
-//	else if (state == 2) {
-//		cout << "10";
-//	}
-//	else if (state == 3) {
-//		cout << "11";
-//	}
-//}
-//
-//void convert1BitStateAndPrint(int state) {
-//	if (state == 0) {
-//		cout << "0";
-//	}
-//	else if (state == 1) {
-//		cout << "1";
-//	}
-//}
-//
-//void convertStAndPrint(vector<int> st) {
-//	for (int i = 0; i < st.size(); i++) {
-//		if (st[i] == 0) {
-//			cout << "SN";
-//			if (i < st.size() - 1)
-//				cout << ",";
-//		}
-//		else if (st[i] == 1) {
-//			cout << "WN";
-//			if (i < st.size() - 1)
-//				cout << ",";
-//		}
-//		else if (st[i] == 2) {
-//			cout << "WT";
-//			if (i < st.size() - 1)
-//				cout << ",";
-//		}
-//		else if (st[i] == 3) {
-//			cout << "ST";
-//			if (i < st.size() - 1)
-//				cout << ",";
-//		}
-//	}
-//}
-//
-//void convertPredAndPrint(int pred) {
-//	if (pred == 0) {
-//		cout << "N";
-//	}
-//	else if (pred == 1) {
-//		cout << "T";
-//	}
-//}
 
 struct Entry {
 	vector<int> outcome;
@@ -102,41 +35,6 @@ struct Entry {
 
 int main()
 {
-	//while (1) {
-	//	string s;
-	//	cout << "input pattern" << endl;
-	//	cin >> s;
-	//	vector<int> input;
-	//	vector<int> state; // 0:00, 1:01, 2:10, 3:11
-	//	state.push_back(0); // initial state
-	//	vector<int> st; // 0:SN, 1:WN, 2:WT, 3:ST
-	//	for (int i = 0; i < 4; i++)
-	//		st.push_back(0); // initial SN,SN,SN,SN
-	//	vector<int> pred; // predict 0:N, 1:T
-	//	vector<char> correct; // correct or not (O or X)
-
-	//	for (int i = 0; i < s.size(); i++) {
-	//		if (s[i] == 'N') {
-	//			input.push_back(0);
-	//		}
-	//		else if (s[i] == 'T') {
-	//			input.push_back(1);
-	//		}
-	//		//cout << input[i];
-	//	}
-	//	cout << endl;
-	//	do2BitHistory2BC(input, state, st, pred, correct);
-
-	//	vector<int> state1Bit; // 0, 1
-	//	state1Bit.push_back(0); // initial state
-	//	vector<int> st1Bit; // 0:SN, 1:WN, 2:WT, 3:ST
-	//	st1Bit.push_back(0); // initial SN,SN
-	//	st1Bit.push_back(0);
-	//	vector<int> pred1Bit;
-	//	vector<char> correct1Bit;
-	//	do1BitHistory2BC(input, state1Bit, st1Bit, pred1Bit, correct1Bit);
-	//}
-
 	ifstream input;
 	vector<string> inputContent;
 	string inp;
@@ -152,19 +50,6 @@ int main()
 		}
 	}
 
-	//for (int i = 0; i < inputContent.size(); i++) {
-	//	cout << inputContent[i] << endl;
-	//}
-	//vector<string> loadInstName;
-	//vector<int> loadInstNumber;
-	//vector<string> instFirst;
-	//vector<string> instSecond;
-	//vector<string> instThird;
-	//vector<string> loopName;
-	//vector<string> instName;
-	//vector<int> instLocation;
-	//vector<int> loopLocation;
-	//string first, second, third;
 	loadInstName.push_back("R0");
 	loadInstNumber.push_back(0);
 	/*parser start====================================================================================*/
@@ -640,20 +525,6 @@ int main()
 	cout << endl;
 	/*run end====================================================================================*/
 
-	//entries = 0;
-	//while (1) {
-	//	string s;
-	//	cin >> s;
-	//	do2BitHistroy(s, entry[0].state, entry[0].st, entry[0].outcome, entry[0].count);
-	//	if (entries == 0) {
-	//		do2BitHistroy(s, entry[0].state, entry[0].st, entry[0].outcome, entry[0].count);
-	//		entries = 1;
-	//	}
-	//	else if (entries == 1) {
-	//		do2BitHistroy(s, entry[1].state, entry[1].st, entry[1].outcome, entry[1].count);
-	//		entries = 0;
-	//	}
-	//}
 	system("pause");
 }
 
@@ -798,149 +669,3 @@ int stateLimit(int state) {
 		state = 0;
 	return state;
 }
-
-//int state1BitLimit(int state) {
-//	if (state > 1)
-//		state = 1;
-//	if (state < 0)
-//		state = 0;
-//	return state;
-//}
-
-//void predSave(int st, vector<int> &pred) {
-//	if (st == 0 || st == 1) {
-//		pred.push_back(0);
-//	}
-//	else if (st == 2 || st == 3) {
-//		pred.push_back(1);
-//	}
-//}
-//
-//void differentOrNot(vector<char> &correct, int input, int pred) {
-//	if (input == pred) {
-//		correct.push_back('O');
-//	}
-//	else if (input != pred) {
-//		correct.push_back('X');
-//	}
-//}
-//
-//void do2BitHistory2BC(vector<int> input, vector<int> &state, vector<int> &st, vector<int> &pred, vector<char> &correct) {
-//	// print
-//	convertStateAndPrint(state[0]);
-//	cout << " ";
-//	convertStAndPrint(st);
-//	cout << "  ";
-//	int stateSave = state[0]; // stateSave == 0 (00)
-//	predSave(st[stateSave], pred);
-//	convertPredAndPrint(pred[0]);
-//	cout << "  ";
-//	convertPredAndPrint(input[0]);
-//	differentOrNot(correct, input[0], pred[0]);
-//	cout << "  " << correct[0];
-//	cout << endl;
-//
-//	for (int i = 1; i < input.size(); i++) {
-//		if (input[i-1]) { // T
-//			st[stateSave]++;
-//			st[stateSave] = stateLimit(st[stateSave]);
-//			stateSave++;
-//			state.push_back(stateLimit(stateSave));
-//		}
-//		else { // N
-//			st[stateSave]--;
-//			st[stateSave] = stateLimit(st[stateSave]);
-//			stateSave--;
-//			state.push_back(stateLimit(stateSave));
-//		}
-//
-//		// print
-//		convertStateAndPrint(state[i]);
-//		cout << " ";
-//		convertStAndPrint(st);
-//		cout << "  ";
-//		stateSave = state[i];
-//		predSave(st[stateSave], pred);
-//		convertPredAndPrint(pred[i]);
-//		cout << "  ";
-//		convertPredAndPrint(input[i]);
-//		differentOrNot(correct, input[i], pred[i]);
-//		cout << "  " << correct[i];
-//		cout << endl;
-//	}
-//
-//	// miss calculation
-//	int miss = 0;
-//	for (int i = 0; i < correct.size(); i++) {
-//		if (correct[i] == 'X') {
-//			miss++;
-//		}
-//	}
-//	cout << "2-bit history missprediction: " << miss << endl;
-//	cout << "===========================" << endl << endl;
-//}
-//
-//void do1BitHistory2BC(vector<int> input, vector<int> &state1Bit, vector<int> &st1Bit, vector<int> &pred1Bit, vector<char> &correct1Bit) {
-//	// print
-//	convert1BitStateAndPrint(state1Bit[0]);
-//	cout << " ";
-//	convertStAndPrint(st1Bit);
-//	cout << "  ";
-//	int stateSave = state1Bit[0]; // stateSave == 0 (00)
-//	predSave(st1Bit[stateSave], pred1Bit);
-//	convertPredAndPrint(pred1Bit[0]);
-//	cout << "  ";
-//	convertPredAndPrint(input[0]);
-//	differentOrNot(correct1Bit, input[0], pred1Bit[0]);
-//	cout << "  " << correct1Bit[0];
-//	cout << endl;
-//
-//	for (int i = 1; i < input.size(); i++) {
-//		if (input[i - 1]) { // T
-//			st1Bit[stateSave]++;
-//			st1Bit[stateSave] = stateLimit(st1Bit[stateSave]);
-//			stateSave++;
-//			state1Bit.push_back(state1BitLimit(stateSave));
-//		}
-//		else { // N
-//			st1Bit[stateSave]--;
-//			st1Bit[stateSave] = stateLimit(st1Bit[stateSave]);
-//			stateSave--;
-//			state1Bit.push_back(state1BitLimit(stateSave));
-//		}
-//
-//		// print
-//		convert1BitStateAndPrint(state1Bit[i]);
-//		cout << " ";
-//		convertStAndPrint(st1Bit);
-//		cout << "  ";
-//		stateSave = state1Bit[i];
-//		predSave(st1Bit[stateSave], pred1Bit);
-//		convertPredAndPrint(pred1Bit[i]);
-//		cout << "  ";
-//		convertPredAndPrint(input[i]);
-//		differentOrNot(correct1Bit, input[i], pred1Bit[i]);
-//		cout << "  " << correct1Bit[i];
-//		cout << endl;
-//	}
-//
-//	int miss = 0;
-//	for (int i = 0; i < correct1Bit.size(); i++) {
-//		if (correct1Bit[i] == 'X') {
-//			miss++;
-//		}
-//	}
-//	cout << "1-bit history missprediction: " << miss << endl;
-//	cout << "===========================" << endl << endl;
-//}
-
-// 執行程式: Ctrl + F5 或 [偵錯] > [啟動但不偵錯] 功能表
-// 偵錯程式: F5 或 [偵錯] > [啟動偵錯] 功能表
-
-// 開始使用的秘訣: 
-//   1. 使用 [方案總管] 視窗，新增/管理檔案
-//   2. 使用 [Team Explorer] 視窗，連線到原始檔控制
-//   3. 使用 [輸出] 視窗，參閱組建輸出與其他訊息
-//   4. 使用 [錯誤清單] 視窗，檢視錯誤
-//   5. 前往 [專案] > [新增項目]，建立新的程式碼檔案，或是前往 [專案] > [新增現有項目]，將現有程式碼檔案新增至專案
-//   6. 之後要再次開啟此專案時，請前往 [檔案] > [開啟] > [專案]，然後選取 .sln 檔案
