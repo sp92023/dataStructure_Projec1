@@ -79,9 +79,7 @@ example1:
 Function：
 =================================================================
 
-do2BitHistroy() // 做branch prediction
-returnLoadValue() // 回傳register的值
-returnLoop() // 回傳loop的位置，以便branch到那個位置
-isExist() // 判斷register是否存在
-
-=================================================================
+* do2BitHistroy() // 做branch prediction
+* returnLoadValue() // 回傳register的值
+* returnLoop() // 回傳loop的位置，以便branch到那個位置
+* isExist() // 判斷register是否存在
