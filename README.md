@@ -6,45 +6,45 @@ command:
 執行結果：(example1)
 =================================================================
 
-input entry size
-8
+	input entry size
+	8
 
-entry: 2        beq R1,R2,End
-(00, SN, SN, SN, SN) N N                misprediction: 0
+	entry: 2        beq R1,R2,End
+	(00, SN, SN, SN, SN) N N                misprediction: 0
 
-entry: 4        beq R0,R0,Loop
-(00, SN, SN, SN, SN) N T                misprediction: 1
+	entry: 4        beq R0,R0,Loop
+	(00, SN, SN, SN, SN) N T                misprediction: 1
 
-entry: 2        beq R1,R2,End
-(00, SN, SN, SN, SN) N N                misprediction: 0
+	entry: 2        beq R1,R2,End
+	(00, SN, SN, SN, SN) N N                misprediction: 0
 
-entry: 4        beq R0,R0,Loop
-(01, WN, SN, SN, SN) N T                misprediction: 2
+	entry: 4        beq R0,R0,Loop
+	(01, WN, SN, SN, SN) N T                misprediction: 2
 
-entry: 2        beq R1,R2,End
-(00, SN, SN, SN, SN) N N                misprediction: 0
+	entry: 2        beq R1,R2,End
+	(00, SN, SN, SN, SN) N N                misprediction: 0
 
-entry: 4        beq R0,R0,Loop
-(11, WN, WN, SN, SN) N T                misprediction: 3
+	entry: 4        beq R0,R0,Loop
+	(11, WN, WN, SN, SN) N T                misprediction: 3
 
-entry: 2        beq R1,R2,End
-(00, SN, SN, SN, SN) N N                misprediction: 0
+	entry: 2        beq R1,R2,End
+	(00, SN, SN, SN, SN) N N                misprediction: 0
 
-entry: 4        beq R0,R0,Loop
-(11, WN, WN, SN, WN) N T                misprediction: 4
+	entry: 4        beq R0,R0,Loop
+	(11, WN, WN, SN, WN) N T                misprediction: 4
 
-entry: 2        beq R1,R2,End
-(00, SN, SN, SN, SN) N T                misprediction: 1
+	entry: 2        beq R1,R2,End
+	(00, SN, SN, SN, SN) N T                misprediction: 1
 
 example1:
 =================================================================
-	li R1,0
-	li R2,4
-Loop:
-	beq R1,R2,End
-	subi R2,R2,1
-	beq R0,R0,Loop
-End:
+		li R1,0
+		li R2,4
+	Loop:
+		beq R1,R2,End
+		subi R2,R2,1
+		beq R0,R0,Loop
+	End:
 
 系統流程：
 =================================================================
