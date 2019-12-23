@@ -1,8 +1,8 @@
 # dataStructure_Project
-(in linux)
-command:
-1. g++ -std=c++11 project1.cpp -o project1
-2. ./project1 // 執行
+## command:
+	(in linux)
+	1. g++ -std=c++11 project1.cpp -o project1
+	2. ./project1 // 執行
 
 ## 執行結果：(example1)
 	input entry size
