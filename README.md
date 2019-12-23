@@ -4,8 +4,7 @@ command:
 1. g++ -std=c++11 project1.cpp -o project1
 2. ./project1 // 執行
 
-執行結果：(example1)
-=================================================================
+## 執行結果：(example1)
 	input entry size
 	8
 
@@ -36,8 +35,7 @@ command:
 	entry: 2        beq R1,R2,End
 	(00, SN, SN, SN, SN) N T                misprediction: 1
 
-example1:
------------------------------------------------------------------
+### example1:
 		li R1,0
 		li R2,4
 	Loop:
@@ -46,8 +44,7 @@ example1:
 		beq R0,R0,Loop
 	End:
 
-系統流程：
-=================================================================
+## 系統流程：
 	1. 讀擋
 	2. 讀擋完成後將資料存成以下結構
 	vector<string> loadInstName; // 紀錄每個register的名字
@@ -77,9 +74,7 @@ example1:
 	3. 資料儲存好以後，開始模擬組合語言執行流程，對branch去做預測
 	4. 輸出結果
 
-Function：
-=================================================================
-
+## Function：
 * do2BitHistroy() // 做branch prediction
 * returnLoadValue() // 回傳register的值
 * returnLoop() // 回傳loop的位置，以便branch到那個位置
