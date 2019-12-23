@@ -35,7 +35,7 @@ command:
 	entry: 2        beq R1,R2,End
 	(00, SN, SN, SN, SN) N T                misprediction: 1
 
-example1:
+##example1:
 =================================================================
 		li R1,0
 		li R2,4
