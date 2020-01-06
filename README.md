@@ -45,8 +45,8 @@
 	End:
 
 ## 系統流程：
-	1. 讀擋
-	2. 讀擋完成後將資料存成以下結構
+	1. 讀檔
+	2. 讀檔完成後將資料存成以下結構
 	vector<string> loadInstName; // 紀錄每個register的名字
 	vector<int> loadInstNumber; // 紀錄每個register的值
 
@@ -80,7 +80,7 @@
 * returnLoop() // 回傳loop的位置，以便branch到那個位置
 * isExist() // 判斷register是否存在
 
-#### 讀擋：
+#### 讀檔：
 	/*parser start====================================================================================*/
 	for (int i = 0; i < inputContent.size(); i++) {
 		for (int j = 0; j < inputContent[i].size(); j++) {
