@@ -82,21 +82,21 @@
 
 ### 讀擋：
 	/*parser start====================================================================================*/
-		for (int i = 0; i < inputContent.size(); i++) {
-			for (int j = 0; j < inputContent[i].size(); j++) {
-				if (inputContent[i][j] >= 'A'&&inputContent[i][j] <= 'Z') {
-					string loop;
-					for (int k = j; k < inputContent[i].size(); k++) {
-						if (inputContent[i][k] == ':') {
-						break;
-						}
-						loop.push_back(inputContent[i][k]);
-					}
-					loopName.push_back(loop);
-					loopLocation.push_back(i);
-					loop.clear();
+	for (int i = 0; i < inputContent.size(); i++) {
+		for (int j = 0; j < inputContent[i].size(); j++) {
+			if (inputContent[i][j] >= 'A'&&inputContent[i][j] <= 'Z') {
+				string loop;
+				for (int k = j; k < inputContent[i].size(); k++) {
+					if (inputContent[i][k] == ':') {
 					break;
+					}
+					loop.push_back(inputContent[i][k]);
 				}
+				loopName.push_back(loop);
+				loopLocation.push_back(i);
+				loop.clear();
+				break;
+			}
 			else if (inputContent[i][j] >= 'a'&&inputContent[i][j] <= 'z') {
 				string inst;
 				int l = 0;
