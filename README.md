@@ -131,6 +131,9 @@
 					instLocation.push_back(i);
 					first.clear();
 				}
+				else if(inst == "beq"){
+					...
+				}
 				inst.clear();
 				break;
 			}
