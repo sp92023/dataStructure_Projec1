@@ -79,3 +79,277 @@
 * returnLoadValue() // 回傳register的值
 * returnLoop() // 回傳loop的位置，以便branch到那個位置
 * isExist() // 判斷register是否存在
+
+	/*parser start====================================================================================*/
+	for (int i = 0; i < inputContent.size(); i++) {
+		for (int j = 0; j < inputContent[i].size(); j++) {
+			if (inputContent[i][j] >= 'A'&&inputContent[i][j] <= 'Z') {
+				string loop;
+				for (int k = j; k < inputContent[i].size(); k++) {
+					if (inputContent[i][k] == ':') {
+						break;
+					}
+					loop.push_back(inputContent[i][k]);
+				}
+				loopName.push_back(loop);
+				loopLocation.push_back(i);
+				loop.clear();
+				break;
+			}
+			else if (inputContent[i][j] >= 'a'&&inputContent[i][j] <= 'z') {
+				string inst;
+				int l = 0;
+				for (int k = j; k < inputContent[i].size(); k++) {
+					if (inputContent[i][k] == ' ') {
+						//continue;
+						l = ++k;
+						break;
+					}
+					inst.push_back(inputContent[i][k]);
+				}
+				if (inst == "li") {
+					for (; l < inputContent[i].size(); l++) {
+						if (inputContent[i][l] == ',') {
+							l++;
+							for (int m = l; m < inputContent[i].size(); m++) {
+								second.push_back(inputContent[i][m]);
+							}
+							instSecond.push_back(second);
+							//cout << stoi(second) << endl;
+							loadInstNumber.push_back(stoi(second));
+							second.clear();
+							//l = inputContent[i].size();
+							break;
+						}
+						first.push_back(inputContent[i][l]);
+					}
+					instFirst.push_back(first);
+					loadInstName.push_back(first);
+					instName.push_back(inst);
+					instThird.push_back("no");
+					instLocation.push_back(i);
+					first.clear();
+				}
+				else if (inst == "beq") {
+					for (; l < inputContent[i].size(); l++) {
+						if (inputContent[i][l] == ',') {
+							for (int m = ++l; m < inputContent[i].size(); m++) {
+								if (inputContent[i][m] == ',') {
+									for (int n = ++m; n < inputContent[i].size(); n++) {
+										third.push_back(inputContent[i][n]);
+									}
+									instThird.push_back(third);
+									third.clear();
+									//m = inputContent[i].size();
+									break;
+								}
+								second.push_back(inputContent[i][m]);
+							}
+							instSecond.push_back(second);
+							second.clear();
+							//l = inputContent[i].size();
+							break;
+						}
+						first.push_back(inputContent[i][l]);
+					}
+					instFirst.push_back(first);
+					instName.push_back(inst);
+					instLocation.push_back(i);
+					first.clear();
+				}
+				else if (inst == "bne") {
+					for (; l < inputContent[i].size(); l++) {
+						if (inputContent[i][l] == ',') {
+							for (int m = ++l; m < inputContent[i].size(); m++) {
+								if (inputContent[i][m] == ',') {
+									for (int n = ++m; n < inputContent[i].size(); n++) {
+										third.push_back(inputContent[i][n]);
+									}
+									instThird.push_back(third);
+									third.clear();
+									//m = inputContent[i].size();
+									break;
+								}
+								second.push_back(inputContent[i][m]);
+							}
+							instSecond.push_back(second);
+							second.clear();
+							//l = inputContent[i].size();
+							break;
+						}
+						first.push_back(inputContent[i][l]);
+					}
+					instFirst.push_back(first);
+					instName.push_back(inst);
+					instLocation.push_back(i);
+					first.clear();
+				}
+				else if (inst == "add") {
+					for (; l < inputContent[i].size(); l++) {
+						if (inputContent[i][l] == ',') {
+							for (int m = ++l; m < inputContent[i].size(); m++) {
+								if (inputContent[i][m] == ',') {
+									for (int n = ++m; n < inputContent[i].size(); n++) {
+										third.push_back(inputContent[i][n]);
+									}
+									instThird.push_back(third);
+									third.clear();
+									//m = inputContent[i].size();
+									break;
+								}
+								second.push_back(inputContent[i][m]);
+							}
+							instSecond.push_back(second);
+							second.clear();
+							//l = inputContent[i].size();
+							break;
+						}
+						first.push_back(inputContent[i][l]);
+					}
+					instFirst.push_back(first);
+					instName.push_back(inst);
+					instLocation.push_back(i);
+					first.clear();
+				}
+				else if (inst == "sub") {
+					for (; l < inputContent[i].size(); l++) {
+						if (inputContent[i][l] == ',') {
+							for (int m = ++l; m < inputContent[i].size(); m++) {
+								if (inputContent[i][m] == ',') {
+									for (int n = ++m; n < inputContent[i].size(); n++) {
+										third.push_back(inputContent[i][n]);
+									}
+									instThird.push_back(third);
+									third.clear();
+									//m = inputContent[i].size();
+									break;
+								}
+								second.push_back(inputContent[i][m]);
+							}
+							instSecond.push_back(second);
+							second.clear();
+							//l = inputContent[i].size();
+							break;
+						}
+						first.push_back(inputContent[i][l]);
+					}
+					instFirst.push_back(first);
+					instName.push_back(inst);
+					instLocation.push_back(i);
+					first.clear();
+				}
+				else if (inst == "subi") {
+				for (; l < inputContent[i].size(); l++) {
+					if (inputContent[i][l] == ',') {
+						for (int m = ++l; m < inputContent[i].size(); m++) {
+							if (inputContent[i][m] == ',') {
+								for (int n = ++m; n < inputContent[i].size(); n++) {
+									third.push_back(inputContent[i][n]);
+								}
+								instThird.push_back(third);
+								third.clear();
+								//m = inputContent[i].size();
+								break;
+							}
+							second.push_back(inputContent[i][m]);
+						}
+						instSecond.push_back(second);
+						second.clear();
+						//l = inputContent[i].size();
+						break;
+					}
+					first.push_back(inputContent[i][l]);
+				}
+				instFirst.push_back(first);
+				instName.push_back(inst);
+				instLocation.push_back(i);
+				first.clear();
+				}
+				else if (inst == "mul") {
+					for (; l < inputContent[i].size(); l++) {
+						if (inputContent[i][l] == ',') {
+							for (int m = ++l; m < inputContent[i].size(); m++) {
+								if (inputContent[i][m] == ',') {
+									for (int n = ++m; n < inputContent[i].size(); n++) {
+										third.push_back(inputContent[i][n]);
+									}
+									instThird.push_back(third);
+									third.clear();
+									//m = inputContent[i].size();
+									break;
+								}
+								second.push_back(inputContent[i][m]);
+							}
+							instSecond.push_back(second);
+							second.clear();
+							//l = inputContent[i].size();
+							break;
+						}
+						first.push_back(inputContent[i][l]);
+					}
+					instFirst.push_back(first);
+					instName.push_back(inst);
+					instLocation.push_back(i);
+					first.clear();
+				}
+				else if (inst == "addi") {
+					for (; l < inputContent[i].size(); l++) {
+						if (inputContent[i][l] == ',') {
+							for (int m = ++l; m < inputContent[i].size(); m++) {
+								if (inputContent[i][m] == ',') {
+									for (int n = ++m; n < inputContent[i].size(); n++) {
+										third.push_back(inputContent[i][n]);
+									}
+									instThird.push_back(third);
+									third.clear();
+									//m = inputContent[i].size();
+									break;
+								}
+								second.push_back(inputContent[i][m]);
+							}
+							instSecond.push_back(second);
+							second.clear();
+							//l = inputContent[i].size();
+							break;
+						}
+						first.push_back(inputContent[i][l]);
+					}
+					instFirst.push_back(first);
+					instName.push_back(inst);
+					instLocation.push_back(i);
+					first.clear();
+				}
+				else if (inst == "andi") {
+					for (; l < inputContent[i].size(); l++) {
+						if (inputContent[i][l] == ',') {
+							for (int m = ++l; m < inputContent[i].size(); m++) {
+								if (inputContent[i][m] == ',') {
+									for (int n = ++m; n < inputContent[i].size(); n++) {
+										third.push_back(inputContent[i][n]);
+									}
+									instThird.push_back(third);
+									third.clear();
+									//m = inputContent[i].size();
+									break;
+								}
+								second.push_back(inputContent[i][m]);
+							}
+							instSecond.push_back(second);
+							second.clear();
+							//l = inputContent[i].size();
+							break;
+						}
+						first.push_back(inputContent[i][l]);
+					}
+					instFirst.push_back(first);
+					instName.push_back(inst);
+					instLocation.push_back(i);
+					first.clear();
+				}
+				//cout << inst << endl;
+				inst.clear();
+				break;
+			}
+		}
+	}
+	/*parser end====================================================================================*/
