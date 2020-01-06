@@ -79,7 +79,6 @@
 * returnLoadValue() // 回傳register的值
 * returnLoop() // 回傳loop的位置，以便branch到那個位置
 * isExist() // 判斷register是否存在
-
 	/*parser start====================================================================================*/
 	for (int i = 0; i < inputContent.size(); i++) {
 		for (int j = 0; j < inputContent[i].size(); j++) {
