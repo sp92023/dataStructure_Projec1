@@ -79,22 +79,23 @@
 * returnLoadValue() // 回傳register的值
 * returnLoop() // 回傳loop的位置，以便branch到那個位置
 * isExist() // 判斷register是否存在
+
 	/*parser start====================================================================================*/
-	for (int i = 0; i < inputContent.size(); i++) {
-		for (int j = 0; j < inputContent[i].size(); j++) {
-			if (inputContent[i][j] >= 'A'&&inputContent[i][j] <= 'Z') {
-				string loop;
-				for (int k = j; k < inputContent[i].size(); k++) {
-					if (inputContent[i][k] == ':') {
+		for (int i = 0; i < inputContent.size(); i++) {
+			for (int j = 0; j < inputContent[i].size(); j++) {
+				if (inputContent[i][j] >= 'A'&&inputContent[i][j] <= 'Z') {
+					string loop;
+					for (int k = j; k < inputContent[i].size(); k++) {
+						if (inputContent[i][k] == ':') {
 						break;
+						}
+						loop.push_back(inputContent[i][k]);
 					}
-					loop.push_back(inputContent[i][k]);
+					loopName.push_back(loop);
+					loopLocation.push_back(i);
+					loop.clear();
+					break;
 				}
-				loopName.push_back(loop);
-				loopLocation.push_back(i);
-				loop.clear();
-				break;
-			}
 			else if (inputContent[i][j] >= 'a'&&inputContent[i][j] <= 'z') {
 				string inst;
 				int l = 0;
