@@ -140,3 +140,186 @@
 		}
 	}
 	/*parser end====================================================================================*/
+	讀檔的部分用大小寫區分，大寫為branch會跳去的位置，小寫為instruction，我會將branch名稱跟位置分別存在loopName和loopLocation，instruction的紀錄方式如上面所述，並且也會將instruction的位置存於instLocation，以便之後branch較好尋找位置。
+	
+#### 創建entry：
+	vector<Entry> entry;
+	for (int i = 0; i < entries; i++) {
+		Entry e;
+		e.outcome.push_back(0); // initial 0: NT
+		e.outcome.push_back(0);
+		e.outcome.push_back(0);
+		e.state.push_back(0);
+		for (int i = 0; i < 4; i++)
+			e.st.push_back(0); // initial SN,SN,SN,SN
+
+		entry.push_back(e);
+	}
+
+#### execution：
+	for (int i = 0; i < instName.size(); i++) { // run for loop
+		if (instName[i] == "beq") {
+			if (returnLoadValue(instFirst[i]) == returnLoadValue(instSecond[i])) {
+				//cout << "beq T " << instLocation[i] << endl;
+				//cout << returnLoop(instThird[i]) << endl;
+				cout << endl << "entry: " << i % entries << "	";
+				cout << instName[i] << " " << instFirst[i] << "," << instSecond[i] << "," << instThird[i] << endl;
+				do2BitHistroy("T", entry[i%entries].state, entry[i%entries].st, entry[i%entries].outcome, entry[i%entries].count);
+				i = returnLoop(instThird[i]) - 1;
+			}
+			else {
+				//cout << "beq N " << instLocation[i] << endl;
+				cout << endl << "entry: " << i % entries << "	";
+				cout << instName[i] << " " << instFirst[i] << "," << instSecond[i] << "," << instThird[i] << endl;
+				do2BitHistroy("N", entry[i%entries].state, entry[i%entries].st, entry[i%entries].outcome, entry[i%entries].count);
+				
+			}
+		}
+		else if (instName[i] == "bne") {
+			if (returnLoadValue(instFirst[i]) != returnLoadValue(instSecond[i])) {
+				//cout << "bne T " << instLocation[i] << endl;
+				//cout << returnLoop(instThird[i]) << endl;
+				cout << endl << "entry: " << i % entries << "	";
+				cout << instName[i] << " " << instFirst[i] << "," << instSecond[i] << "," << instThird[i] << endl;
+				do2BitHistroy("T", entry[i%entries].state, entry[i%entries].st, entry[i%entries].outcome, entry[i%entries].count);
+				i = returnLoop(instThird[i]) - 1;
+			}
+			else {
+				//cout << "bne N " << instLocation[i] << endl;
+				cout << endl << "entry: " << i % entries << "	";
+				cout << instName[i] << " " << instFirst[i] << "," << instSecond[i] << "," << instThird[i] << endl;
+				do2BitHistroy("N", entry[i%entries].state, entry[i%entries].st, entry[i%entries].outcome, entry[i%entries].count);
+			}
+		}
+		else if (instName[i] == "andi") {
+			//cout << "andi N " << instLocation[i] << endl;
+			//cout << "entry: " << i % entries << " ";
+			//do2BitHistroy("N", entry[i%entries].state, entry[i%entries].st, entry[i%entries].outcome, entry[i%entries].count);
+			int andi = 0;
+			int d = stoi(instThird[i]) + 1;
+			andi = returnLoadValue(instSecond[i]) % d;
+			//cout << instFirst[i] << " " << andi << endl;
+			if (isExist(instFirst[i])) {
+				for (int j = 0; j < loadInstName.size(); j++) {
+					if (loadInstName[j] == instFirst[i]) {
+						loadInstNumber[j] = andi;
+					}
+				}
+			}
+			else { // not exist
+				loadInstName.push_back(instFirst[i]);
+				loadInstNumber.push_back(andi);
+			}
+		}
+		else if (instName[i] == "add") {
+			//cout << "add N " << instLocation[i] << endl;
+			//cout << "entry: " << i % entries << " ";
+			//do2BitHistroy("N", entry[i%entries].state, entry[i%entries].st, entry[i%entries].outcome, entry[i%entries].count);
+			int add = 0;
+			add = returnLoadValue(instSecond[i]) + returnLoadValue(instThird[i]);
+			//cout << instFirst[i] << " " << add << endl;
+			if (isExist(instFirst[i])) {
+				for (int j = 0; j < loadInstName.size(); j++) {
+					if (loadInstName[j] == instFirst[i]) {
+						loadInstNumber[j] = add;
+					}
+				}
+			}
+			else { // not exist
+				loadInstName.push_back(instFirst[i]);
+				loadInstNumber.push_back(add);
+			}
+		}
+		else if (instName[i] == "sub") {
+			//cout << "sub N " << instLocation[i] << endl;
+			//cout << "entry: " << i % entries << " ";
+			//do2BitHistroy("N", entry[i%entries].state, entry[i%entries].st, entry[i%entries].outcome, entry[i%entries].count);
+			int sub = 0;
+			sub = returnLoadValue(instSecond[i]) - returnLoadValue(instThird[i]);
+			//cout << instFirst[i] << " " << sub << endl;
+			if (isExist(instFirst[i])) {
+				for (int j = 0; j < loadInstName.size(); j++) {
+					if (loadInstName[j] == instFirst[i]) {
+						loadInstNumber[j] = sub;
+					}
+				}
+			}
+			else { // not exist
+				loadInstName.push_back(instFirst[i]);
+				loadInstNumber.push_back(sub);
+			}
+		}
+		else if (instName[i] == "mul") {
+			//cout << "mul N " << instLocation[i] << endl;
+			//cout << "entry: " << i % entries << " ";
+			//do2BitHistroy("N", entry[i%entries].state, entry[i%entries].st, entry[i%entries].outcome, entry[i%entries].count);
+			int mul = 0;
+			mul = returnLoadValue(instSecond[i]) * returnLoadValue(instThird[i]);
+			//cout << instFirst[i] << " " << mul << endl;
+			if (isExist(instFirst[i])) {
+				for (int j = 0; j < loadInstName.size(); j++) {
+					if (loadInstName[j] == instFirst[i]) {
+						loadInstNumber[j] = mul;
+					}
+				}
+			}
+			else { // not exist
+				loadInstName.push_back(instFirst[i]);
+				loadInstNumber.push_back(mul);
+			}
+		}
+		else if (instName[i] == "addi") {
+			//cout << "addi N " << instLocation[i] << endl;
+			//cout << "entry: " << i % entries << " ";
+			//do2BitHistroy("N", entry[i%entries].state, entry[i%entries].st, entry[i%entries].outcome, entry[i%entries].count);
+			int addi = 0;
+			addi = returnLoadValue(instSecond[i]) + stoi(instThird[i]);
+			//cout << instFirst[i] << " " << addi << endl;
+			if (isExist(instFirst[i])) {
+				for (int j = 0; j < loadInstName.size(); j++) {
+					if (loadInstName[j] == instFirst[i]) {
+						loadInstNumber[j] = addi;
+					}
+				}
+			}
+			else { // not exist
+				loadInstName.push_back(instFirst[i]);
+				loadInstNumber.push_back(addi);
+			}
+		}
+		else if (instName[i] == "subi") {
+			//cout << "subi N " << instLocation[i] << endl;
+			//cout << "entry: " << i % entries << " ";
+			//do2BitHistroy("N", entry[i%entries].state, entry[i%entries].st, entry[i%entries].outcome, entry[i%entries].count);
+			int subi = 0;
+			subi = returnLoadValue(instSecond[i]) - stoi(instThird[i]);
+			//cout << instFirst[i] << " " << subi << endl;
+			if (isExist(instFirst[i])) {
+				for (int j = 0; j < loadInstName.size(); j++) {
+					if (loadInstName[j] == instFirst[i]) {
+						loadInstNumber[j] = subi;
+					}
+				}
+			}
+			else { // not exist
+				loadInstName.push_back(instFirst[i]);
+				loadInstNumber.push_back(subi);
+			}
+		}
+		else if (instName[i] == "li") {
+			//cout << "li N " << instLocation[i] << endl;
+			//cout << "entry: " << i % entries << " ";
+			//do2BitHistroy("N", entry[i%entries].state, entry[i%entries].st, entry[i%entries].outcome, entry[i%entries].count);
+			if (isExist(instFirst[i])) {
+				for (int j = 0; j < loadInstName.size(); j++) {
+					if (loadInstName[j] == instFirst[i]) {
+						loadInstNumber[j] = stoi(instSecond[i]);
+					}
+				}
+			}
+			else { // not exist
+				loadInstName.push_back(instFirst[i]);
+				loadInstNumber.push_back(stoi(instSecond[i]));
+			}
+		}
+	}
