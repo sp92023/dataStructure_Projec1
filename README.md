@@ -209,12 +209,18 @@
 				...
 		}
 	}
+	
 	去模擬程式執行
 	當instName為beq時
 	去判斷兩個register是否相等
 	returnLoadValue()回傳register的值
-	* 如果要做branch
+	如果要做branch
 	do2BitHistroy()做branch prediction
 	將i改為跳過去的location
-	* 如果不做branch
+	如果不做branch
 	i不必修改
+	
+	當instruction為非branch指令時
+	例如add
+	則將兩register值相加再放入另一register
+	其他以此類推
